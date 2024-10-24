@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista Prodotti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <style>
+        .card img {
+            width: 100px;
+            height: auto;
+        }
+        
+         table img {
+            width: 50px; 
+            height: auto; 
+        }
+        
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h4>Lista Prodotti</h4>
+    <form action="/calcolaTotale" method="post"> <!-- Form per calcolare il totale -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Marca</th>
+                    <th>Prezzo</th>
+                    <th>Quantità</th> <!-- Nuova colonna per la quantità -->
+                    <th>Immagine</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="prodotto, iterStat : ${listaProdotti}">
+                    <td th:text="${prodotto.nome}">Nome</td>
+                    <td th:text="${prodotto.marca}">Marca</td>
+                    <td th:text="${prodotto.prezzo}">Prezzo</td>
+                    <td>
+                        <input type="number" name="quantita" min="0" value="0"> <!-- Input per la quantità -->
+                    </td>
+                    <td><img th:src="${prodotto.url}" alt="Immagine prodotto"></td>
+                </tr>
+            </tbody>
+        </table>
+        <input type="submit" value="Calcola Totale"> <!-- Pulsante per calcolare il totale -->
+    </form>
+
+    <div class="row">
+        <div th:each="prodotto : ${listaProdotti}" class="card col s3">
+            <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" th:src="${prodotto.url}" alt="Immagine prodotto">
+            </div>
+            <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4" th:text="${prodotto.nome}"><i class="material-icons right">more_vert</i></span>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4" th:text="${prodotto.marca}"><i class="material-icons right">close</i></span>
+                <p th:text="${prodotto.prezzo}"></p>
+                <p th:text="${prodotto.url}"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

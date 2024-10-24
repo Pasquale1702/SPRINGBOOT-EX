@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Prodotto Aggiunto</title>
+</head>
+<body>
+    <h1>Prodotto Aggiunto</h1>
+    <p>Nome: <span th:text="${prodotto.nome}"></span></p>
+    <p>Marca: <span th:text="${prodotto.marca}"></span></p>
+    <p>Prezzo: <span th:text="${prodotto.prezzo}"></span></p>
+    <p>Foto: <img th:src="${prodotto.url}"></p>
+</body>
+</html>
